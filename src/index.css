@@ -1,0 +1,44 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Fredoka', ui-rounded, 'SF Pro Rounded', 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Fredoka', ui-rounded, 'SF Pro Rounded', 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  background: #0d1033;
+  overscroll-behavior: none;
+}
+
+/* Kids' quiz: a bounce for the right answer, a wobble for a wrong one, stars flying out. */
+@keyframes kid-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+@keyframes kid-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+@keyframes kid-star {
+  0% { transform: translate(-50%, -50%) rotate(var(--a)) translateY(0) scale(0.4); opacity: 1; }
+  100% { transform: translate(-50%, -50%) rotate(var(--a)) translateY(-70px) scale(1); opacity: 0; }
+}
+@keyframes kid-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.kid-pop { animation: kid-pop 0.45s ease-out; }
+.kid-shake { animation: kid-shake 0.3s ease-in-out 2; }
+.kid-star { animation: kid-star 0.9s ease-out forwards; }
+.kid-float { animation: kid-float 2.4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .kid-pop, .kid-shake, .kid-float { animation: none; }
+  .kid-star { display: none; }
+}
